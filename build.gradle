@@ -1,0 +1,37 @@
+plugins {
+    id 'java'
+}
+
+group 'kadehar-extentreport-example'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile(
+            "com.codeborne:selenide:5.13.0",
+            "com.aventstack:extentreports:3.1.5",
+            "org.aeonbits.owner:owner:1.0.12",
+            "log4j:log4j:1.2.17",
+            "org.slf4j:slf4j-log4j12:1.7.30",
+            "org.junit.jupiter:junit-jupiter-api:5.6.2",
+            "org.junit.jupiter:junit-jupiter-engine:5.6.2",
+            "org.junit.jupiter:junit-jupiter-params:5.6.2"
+    )
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+test {
+    useJUnitPlatform()
+    systemProperties = [
+            'file.encoding': 'UTF-8',
+            'selenide.browser': 'chrome',
+    ]
+}
